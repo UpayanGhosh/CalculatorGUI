@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="Delete">
+    <file>Layer 1.png</file>
+  </qresource>
+  <qresource prefix="C">
+    <file>C.png</file>
+  </qresource>
+</RCC>
