@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
         
 
 
-# This will concatinate the previos number pressed with the new number pressed.
+
             self.OutputDisplay.setText(f'{self.OutputDisplay.text()}{pressed}')
 
 
