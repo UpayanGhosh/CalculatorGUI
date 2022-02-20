@@ -1,11 +1,17 @@
-
+import re
 import math
-from tokenize import Double
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
-    # The Press_it Functions determines the work of the button press
+
+
+    def replace(self,expression):
+        # print(expression)
+    # Replace the sqrt symbol with the sqrt funcion from the math module
+        return eval(re.sub(r'√(\d+)', r'math.sqrt(\1)', expression))
+    
+        # The Press_it Functions determines the work of the button press
     def press_it(self, pressed):
         if pressed == "C":
             self.OutputDisplay.setText("0")
@@ -15,7 +21,7 @@ class Ui_MainWindow(object):
         
 
 
-# This will concatinate the previos number pressed with the new number pressed.
+
             self.OutputDisplay.setText(f'{self.OutputDisplay.text()}{pressed}')
 
 
@@ -23,18 +29,18 @@ class Ui_MainWindow(object):
 
     def Equals_key(self):
         # It grabs what is written on the screen.
-        screen = self.OutputDisplay.text()
-        try:
-            # Then it does the math.
-            answere = eval(screen)
-            # Output answere to the screen
-            self.OutputDisplay.setText(str(answere))
-        except:
-            self.OutputDisplay.setText("ERROR!!")
-        if screen[0]=="√":
+        mystr = self.OutputDisplay.text()
+        screen=mystr
+        patt = re.compile(r'√')
+        matches = patt.finditer(mystr)
+        for match in matches:
+            # print(match)
+            if match !="":
+                answere = self.replace(mystr)
+                self.OutputDisplay.setText(str(round(answere,5)))
+            else:
                 
-               x=int(screen[1])
-               self.OutputDisplay.setText(str(eval("x ** 0.5")))
+                self.OutputDisplay.setText("ERROR!!")
 
     def Decimal_key(self):
         screen = self.OutputDisplay.text()
