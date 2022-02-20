@@ -28,19 +28,23 @@ class Ui_MainWindow(object):
 # The evaluation Function.
 
     def Equals_key(self):
+        screen = self.OutputDisplay.text()
+        try:
+            answere = eval(screen)
+            self.OutputDisplay.setText(str(round(answere,5)))
+        except:
+            
         # It grabs what is written on the screen.
-        mystr = self.OutputDisplay.text()
-        screen=mystr
-        patt = re.compile(r'√')
-        matches = patt.finditer(mystr)
-        for match in matches:
-            # print(match)
-            if match !="":
-                answere = self.replace(mystr)
-                self.OutputDisplay.setText(str(round(answere,5)))
-            else:
-                
-                self.OutputDisplay.setText("ERROR!!")
+            mystr = self.OutputDisplay.text()
+            patt = re.compile(r'√')
+            matches = patt.finditer(mystr)
+            for match in matches:
+                # print(match)
+                if match !="":
+                    answere = self.replace(mystr)
+                    self.OutputDisplay.setText(str(round(answere,5)))
+                else:
+                    self.OutputDisplay.setText("ERROR!!")
 
     def Decimal_key(self):
         screen = self.OutputDisplay.text()
